@@ -1,0 +1,6 @@
+@Api_Disney_HostAddress = http://localhost:5291
+
+GET {{Api_Disney_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
