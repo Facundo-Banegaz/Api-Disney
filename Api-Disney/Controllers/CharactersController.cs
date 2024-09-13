@@ -11,6 +11,7 @@ using Api_Disney.Services.Interfaces;
 using Api_Disney.Exceptions;
 using Api_Disney.DTOs;
 using Api_Disney.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api_Disney.Controllers
 {
@@ -30,6 +31,23 @@ namespace Api_Disney.Controllers
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
             return await _services.GetCharacters();
+        }
+
+        [HttpGet("filter")]
+
+        //[Authorize] // Necesita token para acceder
+        public async Task<ActionResult<IEnumerable<Character>>> FilterCharacters( 
+            [FromQuery] string? name=null,
+            [FromQuery] DateTime? age= null,
+            [FromQuery] float? weight = null,
+            [FromQuery] string? movies = null
+            )
+        {
+            // Llamar al servicio para obtener los personajes filtrados
+            var characters = await _services.GetCharactersFilter(name, age, weight, movies);
+
+            // Retornar los personajes filtrados 
+            return Ok(characters);
         }
 
         // GET: api/Characters/5
@@ -96,4 +114,6 @@ namespace Api_Disney.Controllers
         }
 
     }
+
 }
+

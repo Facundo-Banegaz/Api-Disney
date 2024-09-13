@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Api_Disney.Models;
+using System.ComponentModel.DataAnnotations;
 namespace Api_Disney.DTOs
 {
     public class MovieDTO
@@ -19,10 +20,11 @@ namespace Api_Disney.DTOs
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
+
         [Display(Name = "Nombre Del Género:")]
         [Required(ErrorMessage = "Por favor, ingresar el Género:")]
 
-        public int GeneroId  { get; set; }
+        public int GeneroId { get; set; }
 
         [Display(Name = "Califiacíon:")]
         [Required(ErrorMessage = "Por favor, ingresar la Califiacíon de la Película:")]

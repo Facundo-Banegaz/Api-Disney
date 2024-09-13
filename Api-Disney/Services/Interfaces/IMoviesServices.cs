@@ -1,4 +1,5 @@
 ﻿using Api_Disney.Models;
+using Humanizer.Localisation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Disney.Services.Interfaces
@@ -11,5 +12,6 @@ namespace Api_Disney.Services.Interfaces
 
         Task<Movie> PostMovie(Movie movie);
         Task DeleteMovie(int id);
+        Task<List<Movie>> GetMoviesFilter(string? name, string? genre, string? order);
     }
 }

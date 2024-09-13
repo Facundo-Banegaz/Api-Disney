@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Api_Disney.DTOs;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace Api_Disney.Models
@@ -28,14 +29,17 @@ namespace Api_Disney.Models
         [Display(Name = "Género:")]
         [Required(ErrorMessage = "Por favor, ingresar el Género:")]
         [StringLength(150, MinimumLength = 3)]
-        public Genre? Genero {  get; set; } 
+        public Genre? Genero {  get; set; }
+
+        [JsonIgnore]
+        public int GeneroId { get; set; }
 
         [Display(Name = "Califiacíon:")]
         [Required(ErrorMessage = "Por favor, ingresar la Califiacíon de la Película:")]
         [Range(1, 5, ErrorMessage = "El valor para {0} debe estar entre {1} y {5}.")]
         public int Calification { get; set; }
 
-        [JsonIgnore]
+        //[JsonIgnore]
         public ICollection<Character>? Characters { get; set; }
 
     }

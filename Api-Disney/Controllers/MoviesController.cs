@@ -95,5 +95,20 @@ namespace Api_Disney.Controllers
         }
 
 
+        [HttpGet("filter")]
+        //[Authorize] // Necesita token para acceder
+        public async Task<ActionResult<IEnumerable<Movie>>> FilterMovies(
+            [FromQuery] string? name = null,
+            [FromQuery] string? genre = null, 
+            [FromQuery] string order = "asc"
+            )
+        {
+
+            // Llamar al servicio para obtener las películas filtradas
+            var peliculas = await _services.GetMoviesFilter(name, genre, order);
+
+            // Retornar las películas filtradas
+            return Ok(peliculas);
+        }
     }
 }

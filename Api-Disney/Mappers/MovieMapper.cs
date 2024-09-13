@@ -1,5 +1,6 @@
 ﻿using Api_Disney.DTOs;
 using Api_Disney.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api_Disney.Mappers
 {
@@ -12,7 +13,7 @@ namespace Api_Disney.Mappers
                 Titulo = movie.Titulo,
                 Imagen = movie.Imagen,
                 FechaCreacion = movie.FechaCreacion,
-                GeneroId = movie.GeneroId,
+                GeneroId =movie.GeneroId,
                 Calification = movie.Calification,
             };
         }

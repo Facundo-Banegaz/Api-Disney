@@ -293,3 +293,4 @@ C:\Users\baneg\source\repos\Api-Disney\Api-Disney\bin\Debug\net8.0\ru\Microsoft.
 C:\Users\baneg\source\repos\Api-Disney\Api-Disney\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\baneg\source\repos\Api-Disney\Api-Disney\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
 C:\Users\baneg\source\repos\Api-Disney\Api-Disney\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\baneg\source\repos\Api-Disney\Api-Disney\obj\Debug\net8.0\Api-Disney.sourcelink.json

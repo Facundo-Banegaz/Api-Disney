@@ -24,7 +24,7 @@ namespace Api_Disney.Services
 
         public async Task<Character?> GetCharacter(int id)
         {
-             return await _context.Characters.FindAsync(id);
+             return await _context.Characters.FirstOrDefaultAsync(c => c.Id == id);
         }
 
 
@@ -65,6 +65,40 @@ namespace Api_Disney.Services
         private bool CharacterExists(int id)
         {
             return _context.Characters.Any(e => e.Id == id);
+        }
+
+        public async Task<List<Character>> GetCharactersFilter(string? name, DateTime? age, float? weight, string? movies)
+        {
+            // Empezamos con una consulta base para personajes
+            var query = _context.Characters.AsQueryable();
+
+            // Filtrar por nombre
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(c => c.Nombre.ToLower().Contains(name.ToLower()));
+            }
+
+
+            // Filtrar por edad
+            if (age.HasValue)
+            {
+                query = query.Where(c => c.FechaCreacion.Date == age.Value.Date);
+            }
+
+            // Filtrar por peso
+            if (weight.HasValue)
+            {
+                query = query.Where(c => c.Peso == weight.Value);
+            }
+
+            // Filtrar por películas/series
+            if (!string.IsNullOrEmpty(movies))
+            {
+                query = query.Where(c => c.Movies.Any(m => m.Titulo.ToLower().Contains(movies.ToLower())));
+            }
+
+            // Ejecutar la consulta y retornar la lista filtrada
+            return await query.ToListAsync();
         }
     }
 }

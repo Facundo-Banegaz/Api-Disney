@@ -9,5 +9,6 @@ namespace Api_Disney.Services.Interfaces
         Task PutCharacter(int id, Character character);
         Task<Character> PostCharacter(Character character);
         Task DeleteCharacter(int id);
+        Task<List<Character>> GetCharactersFilter(string? name, DateTime? age, float? weight, string? movies);
     }
 }

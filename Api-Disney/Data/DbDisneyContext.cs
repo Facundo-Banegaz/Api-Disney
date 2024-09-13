@@ -18,6 +18,20 @@ namespace Api_Disney.Data
 
        public DbSet<User> Users { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configuración de la relación uno a muchos entre Movie y Genre
+            modelBuilder.Entity<Movie>()
+                .HasOne(m => m.Genero)
+                .WithMany(g => g.Movies)
+                .HasForeignKey(m => m.GeneroId)
+                .OnDelete(DeleteBehavior.Restrict); // O el comportamiento de eliminación que desees
 
+            // Configuración de la relación muchos a muchos entre Movie y Character
+            modelBuilder.Entity<Movie>()
+                .HasMany(m => m.Characters)
+                .WithMany(c => c.Movies)
+                .UsingEntity(j => j.ToTable("CharacterMovieOrSeries")); // Nombre de la tabla de unión
+        }
     }
 }

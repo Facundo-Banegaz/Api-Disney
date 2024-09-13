@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Api_Disney.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Api_Disney.DTOs
 {

@@ -1,6 +1,7 @@
 ﻿
 using Api_Disney.DTOs;
 using Api_Disney.Models;
+using Humanizer;
 
 namespace Api_Disney.Mappers
 {
@@ -15,7 +16,7 @@ namespace Api_Disney.Mappers
                 Imagen = character.Imagen,
                 FechaCreacion = character.FechaCreacion,
                 Peso = character.Peso,
-                Historia = character.Historia
+                Historia = character.Historia,
             };
 
         }
