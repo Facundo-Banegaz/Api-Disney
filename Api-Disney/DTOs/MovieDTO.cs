@@ -1,4 +1,5 @@
 ﻿using Api_Disney.Models;
+using Api_Disney.Validators;
 using System.ComponentModel.DataAnnotations;
 namespace Api_Disney.DTOs
 {
@@ -18,6 +19,7 @@ namespace Api_Disney.DTOs
         [Required(ErrorMessage = "Por favor, ingresar la Fecha:")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
+        [DateNotInFuture] //mi validación
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
 

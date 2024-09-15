@@ -30,12 +30,21 @@ namespace Api_Disney.Services
 
         public async Task PutCharacter(int id, Character character)
         {
-            var exits = CharacterExists(id);
+            var exits = await  CharacterExistsAsync(id);
 
 
             if (!exits)
             {
                 throw new CharactersNotFoundException(id);
+            }
+
+
+
+            var duplicateCharacter = await _context.Characters.AnyAsync(c => c.Nombre == character.Nombre && c.Id != id);
+
+            if (duplicateCharacter)
+            {
+                throw new CharacterAlreadyExistsException(character.Nombre);
             }
 
             _context.Entry(character).State = EntityState.Modified;
@@ -44,6 +53,16 @@ namespace Api_Disney.Services
 
         public async Task<Character> PostCharacter(Character character)
         {
+
+            // Verificar si ya existe un personaje con el mismo nombre
+            var exists = await _context.Characters
+                                       .AnyAsync(c => c.Nombre == character.Nombre);
+
+            if (exists)
+            {
+                throw new CharacterAlreadyExistsException(character.Nombre); // Excepción personalizada
+            }
+
             _context.Characters.Add(character);
             await _context.SaveChangesAsync();
             
@@ -62,9 +81,9 @@ namespace Api_Disney.Services
         }
 
 
-        private bool CharacterExists(int id)
+        private async Task<bool> CharacterExistsAsync(int id)
         {
-            return _context.Characters.Any(e => e.Id == id);
+            return await _context.Characters.AnyAsync(e => e.Id == id);
         }
 
         public async Task<List<Character>> GetCharactersFilter(string? name, DateTime? age, float? weight, string? movies)

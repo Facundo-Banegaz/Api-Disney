@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Api-Disney")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+56e0151afb4527eb4eaf442996e5e8d2c1ad65cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2db0ddf8d128db4fffb342e9413013d27942ec97")]
 [assembly: System.Reflection.AssemblyProductAttribute("Api-Disney")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Api-Disney")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

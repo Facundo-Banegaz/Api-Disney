@@ -30,7 +30,7 @@ namespace Api_Disney.Services
 
         public async Task PutGenre(int id, Genre genre)
         {
-            var exits =    GenreExists(id);
+            var exits = await GenreExistsAsync(id);
 
 
 
@@ -39,13 +39,32 @@ namespace Api_Disney.Services
                 throw new GenreNotFoundException(id);
             }
 
-             _context.Entry(genre).State = EntityState.Modified;
+            var duplicateGenre = await _context.Genres.AnyAsync(g => g.Nombre == genre.Nombre && g.Id != id);
+
+            if (duplicateGenre)
+            {
+                throw new GenreAlreadyExistsException(genre.Nombre); 
+            }
+
+
+
+            _context.Entry(genre).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
 
         public async Task<Genre> PostGenre(Genre genre)
         {
+            // Verificar si ya existe un género igual
+            var exists = await _context.Genres.AnyAsync(g => g.Nombre == genre.Nombre);
+
+            if (exists)
+            {
+                
+                throw new GenreAlreadyExistsException(genre.Nombre);
+            }
+
+
             _context.Genres.Add(genre);
             await _context.SaveChangesAsync();
             return genre;
@@ -63,9 +82,9 @@ namespace Api_Disney.Services
 
             await _context.SaveChangesAsync();
         }
-        private bool GenreExists(int id)
+        private async Task<bool> GenreExistsAsync(int id)
         {
-            return _context.Genres.Any(e => e.Id == id);
+            return await  _context.Genres.AnyAsync(e => e.Id == id);
         }
     }
 }

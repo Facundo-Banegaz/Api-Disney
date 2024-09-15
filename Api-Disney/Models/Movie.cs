@@ -1,4 +1,5 @@
 ﻿using Api_Disney.DTOs;
+using Api_Disney.Validators;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -23,6 +24,7 @@ namespace Api_Disney.Models
         [Required(ErrorMessage = "Por favor, ingresar la Fecha:")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
+        [DateNotInFuture]
         public DateTime FechaCreacion { get; set; } = DateTime.Now;
 
 

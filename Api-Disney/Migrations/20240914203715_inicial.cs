@@ -48,10 +48,11 @@ namespace Api_Disney.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    segundoNombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    SegundoNombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Apellido = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,7 +79,7 @@ namespace Api_Disney.Migrations
                         column: x => x.GeneroId,
                         principalTable: "Genres",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -86,11 +87,11 @@ namespace Api_Disney.Migrations
                 columns: table => new
                 {
                     CharactersId = table.Column<int>(type: "int", nullable: false),
-                    PeliculasId = table.Column<int>(type: "int", nullable: false)
+                    MoviesId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CharacterMovieOrSeries", x => new { x.CharactersId, x.PeliculasId });
+                    table.PrimaryKey("PK_CharacterMovieOrSeries", x => new { x.CharactersId, x.MoviesId });
                     table.ForeignKey(
                         name: "FK_CharacterMovieOrSeries_Characters_CharactersId",
                         column: x => x.CharactersId,
@@ -98,22 +99,28 @@ namespace Api_Disney.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CharacterMovieOrSeries_MovieOrSeries_PeliculasId",
-                        column: x => x.PeliculasId,
+                        name: "FK_CharacterMovieOrSeries_MovieOrSeries_MoviesId",
+                        column: x => x.MoviesId,
                         principalTable: "MovieOrSeries",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CharacterMovieOrSeries_PeliculasId",
+                name: "IX_CharacterMovieOrSeries_MoviesId",
                 table: "CharacterMovieOrSeries",
-                column: "PeliculasId");
+                column: "MoviesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MovieOrSeries_GeneroId",
                 table: "MovieOrSeries",
                 column: "GeneroId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
+                table: "Users",
+                column: "Email",
+                unique: true);
         }
 
         /// <inheritdoc />

@@ -14,7 +14,7 @@ builder.Services.AddDbContext<DbDisneyContext>(options => options.UseSqlServer(s
 builder.Services.AddTransient<IGenreServices, GenreServices>();
 builder.Services.AddTransient<IMoviesServices, MoviesServices>();
 builder.Services.AddTransient<ICharactersServices, CharactersServices>();
-
+builder.Services.AddTransient<IUsersServices, UsersServices>();
 
 
 builder.Services.AddControllers();

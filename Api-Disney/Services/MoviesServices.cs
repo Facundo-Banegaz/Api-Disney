@@ -31,7 +31,7 @@ namespace Api_Disney.Services
         }
         public async Task PutMovie(int id, Movie movie)
         {
-            var exits = MovieExists(id);
+            var exits =await MovieExistsAsync(id);
 
 
             if (!exits)
@@ -39,12 +39,28 @@ namespace Api_Disney.Services
                 throw new MoviesNotFoundException(id);
             }
 
+            var duplicateMovie = await _context.MovieOrSeries
+                                    .AnyAsync(m => m.Titulo == movie.Titulo && m.GeneroId == movie.GeneroId && m.Id != id);
+
+            if (duplicateMovie)
+            {
+                throw new MovieAlreadyExistsException(movie.Titulo, movie.Genero?.Nombre ?? "desconocido");
+            }
             _context.Entry(movie).State = EntityState.Modified;
             await _context.SaveChangesAsync();
         }
 
         public async Task<Movie> PostMovie(Movie movie)
         {
+            // Verificar si ya existe una película con el mismo título y género
+            var exists = await _context.MovieOrSeries
+                                       .AnyAsync(m => m.Titulo == movie.Titulo && m.GeneroId == movie.GeneroId);
+
+            if (exists)
+            {
+                throw new MovieAlreadyExistsException(movie.Titulo, movie.Genero?.Nombre ?? "desconocido"); // Excepción personalizada
+            }
+
             _context.MovieOrSeries.Add(movie);
             await _context.SaveChangesAsync();
 
@@ -64,10 +80,11 @@ namespace Api_Disney.Services
             await _context.SaveChangesAsync();
         }
 
-        private bool MovieExists(int id)
+        private async Task<bool> MovieExistsAsync(int id)
         {
-            return _context.MovieOrSeries.Any(e => e.Id == id);
+            return await _context.MovieOrSeries.AnyAsync(e => e.Id == id);
         }
+
 
         public async Task<List<Movie>> GetMoviesFilter(string? name, string? genre, string? order)
         {

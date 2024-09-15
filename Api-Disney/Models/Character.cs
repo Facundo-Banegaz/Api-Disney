@@ -1,4 +1,5 @@
 ﻿using Api_Disney.DTOs;
+using Api_Disney.Validators;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
@@ -23,7 +24,8 @@ namespace Api_Disney.Models
         [Required(ErrorMessage = "Por favor, ingresar la Fecha:")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MMM dd, yyyy}")]
-        public DateTime FechaCreacion { get; set; } = DateTime.Now;
+        [DateInPast]
+        public DateTime FechaNacimiento{ get; set; } = DateTime.Now;
 
         [Display(Name = "Peso:")]
         [Required(ErrorMessage = "Por favor, ingresar el peso.")]

@@ -14,7 +14,7 @@ namespace Api_Disney.Mappers
             {
                 Nombre = character.Nombre,
                 Imagen = character.Imagen,
-                FechaCreacion = character.FechaCreacion,
+                FechaNacimiento = character.FechaNacimiento,
                 Peso = character.Peso,
                 Historia = character.Historia,
             };
