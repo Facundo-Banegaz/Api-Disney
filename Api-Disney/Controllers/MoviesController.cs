@@ -35,7 +35,7 @@ namespace Api_Disney.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> GetMovie(int id)
+        public async Task<ActionResult<Movie>> GetMovie(Guid id)
         {
             var movie = await _services.GetMovie(id);
 
@@ -50,7 +50,7 @@ namespace Api_Disney.Controllers
         // PUT: api/Movies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMovie(int id, MovieDTO movie)
+        public async Task<IActionResult> PutMovie(Guid id, MovieDTO movie)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace Api_Disney.Controllers
 
         // DELETE: api/Movies/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMovie(int id)
+        public async Task<IActionResult> DeleteMovie(Guid id)
         {
             try
             {

@@ -2,7 +2,7 @@
 {
     public class MoviesNotFoundException: Exception
     {
-        public MoviesNotFoundException(int id) : base($"No existe una pelicula con id {id}")
+        public MoviesNotFoundException(Guid id) : base($"No existe una pelicula con id {id}")
         {
 
         }

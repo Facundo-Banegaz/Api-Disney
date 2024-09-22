@@ -2,7 +2,7 @@
 {
     public class CharactersNotFoundException : Exception
     {
-        public CharactersNotFoundException(int id) : base($"No existe un Personaje con id {id}")
+        public CharactersNotFoundException(Guid id) : base($"No existe un Personaje con id {id}")
         {
 
         }

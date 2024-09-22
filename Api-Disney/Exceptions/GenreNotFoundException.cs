@@ -2,7 +2,7 @@
 {
     public class GenreNotFoundException: Exception
     {
-        public GenreNotFoundException(int id) : base($"No existe un Genero con id {id}")
+        public GenreNotFoundException(Guid id) : base($"No existe un Genero con id {id}")
         {
 
         }

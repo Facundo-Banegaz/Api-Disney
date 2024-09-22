@@ -17,6 +17,7 @@ namespace Api_Disney.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class GenresController : ControllerBase
     {
         private readonly IGenreServices _services;
@@ -39,7 +40,7 @@ namespace Api_Disney.Controllers
 
         // GET: api/Genres/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Genre>> GetGenre(int id)
+        public async Task<ActionResult<Genre>> GetGenre(Guid id)
         {
             var genre = await _services.GetGenre(id);
 
@@ -54,7 +55,7 @@ namespace Api_Disney.Controllers
         // PUT: api/Genres/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutGenre(int id, GenreDTO genre)
+        public async Task<IActionResult> PutGenre(Guid id , GenreDTO genre)
         {
            
 
@@ -88,7 +89,7 @@ namespace Api_Disney.Controllers
 
         // DELETE: api/Genres/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteGenre(int id)
+        public async Task<IActionResult> DeleteGenre(Guid id)
         {
 
 

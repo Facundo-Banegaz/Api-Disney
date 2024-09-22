@@ -13,5 +13,9 @@ namespace Api_Disney.DTOs
         [StringLength(150, MinimumLength = 4)]
         public string Nombre { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Por favor, seleccionar una Imagen.")]
+        [Display(Name = "Imagen")]
+        public string Imagen { get; set; } = string.Empty;
+
     }
 }

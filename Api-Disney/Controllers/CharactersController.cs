@@ -52,7 +52,7 @@ namespace Api_Disney.Controllers
 
         // GET: api/Characters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Character>> GetCharacter(int id)
+        public async Task<ActionResult<Character>> GetCharacter(Guid id)
         {
             var character = await _services.GetCharacter(id);
 
@@ -67,7 +67,7 @@ namespace Api_Disney.Controllers
         // PUT: api/Characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, CharacterDTO character)
+        public async Task<IActionResult> PutCharacter(Guid id, CharacterDTO character)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace Api_Disney.Controllers
 
         // DELETE: api/Characters/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCharacter(int id)
+        public async Task<IActionResult> DeleteCharacter(Guid id)
         {
             try
             {

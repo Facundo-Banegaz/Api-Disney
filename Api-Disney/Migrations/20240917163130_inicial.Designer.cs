@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api_Disney.Migrations
 {
     [DbContext(typeof(DbDisneyContext))]
-    [Migration("20240914203715_inicial")]
+    [Migration("20240917163130_inicial")]
     partial class inicial
     {
         /// <inheritdoc />
@@ -27,13 +27,11 @@ namespace Api_Disney.Migrations
 
             modelBuilder.Entity("Api_Disney.Models.Character", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("FechaCreacion")
+                    b.Property<DateTime>("FechaNacimiento")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Historia")
@@ -59,11 +57,13 @@ namespace Api_Disney.Migrations
 
             modelBuilder.Entity("Api_Disney.Models.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Imagen")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -77,11 +77,9 @@ namespace Api_Disney.Migrations
 
             modelBuilder.Entity("Api_Disney.Models.Movie", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Calification")
                         .HasColumnType("int");
@@ -89,8 +87,8 @@ namespace Api_Disney.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GeneroId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("GeneroId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Imagen")
                         .IsRequired()
@@ -110,11 +108,9 @@ namespace Api_Disney.Migrations
 
             modelBuilder.Entity("Api_Disney.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Apellido")
                         .IsRequired()
@@ -123,7 +119,8 @@ namespace Api_Disney.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Imagen")
                         .IsRequired()
@@ -146,19 +143,16 @@ namespace Api_Disney.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique();
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CharacterMovie", b =>
                 {
-                    b.Property<int>("CharactersId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("CharactersId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("MoviesId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("MoviesId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("CharactersId", "MoviesId");
 

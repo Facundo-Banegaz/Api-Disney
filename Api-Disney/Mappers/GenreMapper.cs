@@ -11,7 +11,9 @@ namespace Api_Disney.Mapper
 
             return new Genre
             {
-                Nombre = genre.Nombre
+                Nombre = genre.Nombre,
+                Imagen = genre.Imagen,
+                
             };
         }
     }

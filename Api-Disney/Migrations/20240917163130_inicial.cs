@@ -15,11 +15,10 @@ namespace Api_Disney.Migrations
                 name: "Characters",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FechaNacimiento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Peso = table.Column<float>(type: "real", nullable: false),
                     Historia = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -32,9 +31,9 @@ namespace Api_Disney.Migrations
                 name: "Genres",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,13 +44,12 @@ namespace Api_Disney.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     SegundoNombre = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Apellido = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -63,12 +61,11 @@ namespace Api_Disney.Migrations
                 name: "MovieOrSeries",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Titulo = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Imagen = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FechaCreacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    GeneroId = table.Column<int>(type: "int", nullable: false),
+                    GeneroId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Calification = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -86,8 +83,8 @@ namespace Api_Disney.Migrations
                 name: "CharacterMovieOrSeries",
                 columns: table => new
                 {
-                    CharactersId = table.Column<int>(type: "int", nullable: false),
-                    MoviesId = table.Column<int>(type: "int", nullable: false)
+                    CharactersId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    MoviesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -115,12 +112,6 @@ namespace Api_Disney.Migrations
                 name: "IX_MovieOrSeries_GeneroId",
                 table: "MovieOrSeries",
                 column: "GeneroId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_Email",
-                table: "Users",
-                column: "Email",
-                unique: true);
         }
 
         /// <inheritdoc />

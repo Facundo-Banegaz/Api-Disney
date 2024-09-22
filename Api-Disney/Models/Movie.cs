@@ -8,7 +8,7 @@ namespace Api_Disney.Models
     public class Movie
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name = "Título:")]
         [Required(ErrorMessage = "Por favor, ingresar el Título de la Película:")]
@@ -34,7 +34,7 @@ namespace Api_Disney.Models
         public Genre? Genero {  get; set; }
 
         [JsonIgnore]
-        public int GeneroId { get; set; }
+        public Guid GeneroId { get; set; }
 
         [Display(Name = "Califiacíon:")]
         [Required(ErrorMessage = "Por favor, ingresar la Califiacíon de la Película:")]

@@ -6,11 +6,11 @@ namespace Api_Disney.Services.Interfaces
     {
         Task<List<Genre>> GetGenres();
 
-        Task<Genre?> GetGenre(int id);
-        Task PutGenre(int id, Genre genre);
+        Task<Genre?> GetGenre(Guid id);
+        Task PutGenre(Guid id, Genre genre);
 
         Task<Genre> PostGenre(Genre genre);
 
-        Task DeleteGenre(int id);
+        Task DeleteGenre(Guid id);
     }
 }

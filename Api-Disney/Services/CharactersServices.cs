@@ -22,13 +22,13 @@ namespace Api_Disney.Services
             return await _context.Characters.ToListAsync();
         }
 
-        public async Task<Character?> GetCharacter(int id)
+        public async Task<Character?> GetCharacter(Guid id)
         {
              return await _context.Characters.FirstOrDefaultAsync(c => c.Id == id);
         }
 
 
-        public async Task PutCharacter(int id, Character character)
+        public async Task PutCharacter(Guid id, Character character)
         {
             var exits = await  CharacterExistsAsync(id);
 
@@ -68,7 +68,7 @@ namespace Api_Disney.Services
             
             return character;
         }
-        public async Task DeleteCharacter(int id)
+        public async Task DeleteCharacter(Guid id)
         {
             var character = await GetCharacter(id);
             if (character is null)
@@ -81,7 +81,7 @@ namespace Api_Disney.Services
         }
 
 
-        private async Task<bool> CharacterExistsAsync(int id)
+        private async Task<bool> CharacterExistsAsync(Guid id)
         {
             return await _context.Characters.AnyAsync(e => e.Id == id);
         }
@@ -101,7 +101,7 @@ namespace Api_Disney.Services
             // Filtrar por edad
             if (age.HasValue)
             {
-                query = query.Where(c => c.FechaCreacion.Date == age.Value.Date);
+                query = query.Where(c => c.FechaNacimiento.Date == age.Value.Date);
             }
 
             // Filtrar por peso

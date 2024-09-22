@@ -1,14 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Api_Disney.Models;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Api_Disney.Models
+namespace Api_Disney.DTOs
 {
-
-    public class User
+    [Index(nameof(Email), IsUnique = true)]
+    public class RegisterDTO
     {
-        [Key]
-        public  Guid    Id { get; set; }
 
         [Display(Name = "Nombre:")]
         [Required(ErrorMessage = "Por favor, ingresar el Nombre:")]
@@ -16,16 +15,13 @@ namespace Api_Disney.Models
         public string Nombre { get; set; } = string.Empty;
 
 
-
         [Display(Name = "Apellido:")]
         [StringLength(150, MinimumLength = 4)]
         public string Apellido { get; set; } = string.Empty;
 
-        [Display(Name = "Rol:")]
-        [StringLength(150, MinimumLength = 4)]
 
-        //podria crear una tabla rol y relacionarlo.
-        public string Rol { get; set; } = string.Empty;
+
+
 
         [Required(ErrorMessage = "El Email es requerido.")]
         [EmailAddress(ErrorMessage = "Ingrese un correo electrónico válido")]
@@ -37,6 +33,5 @@ namespace Api_Disney.Models
         [Display(Name = "Password"), PasswordPropertyText]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "La longitud debe estar entre 5 y 100 caracteres")]
         public string Password { get; set; } = string.Empty;
-
     }
 }

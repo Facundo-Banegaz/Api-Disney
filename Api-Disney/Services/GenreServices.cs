@@ -23,12 +23,12 @@ namespace Api_Disney.Services
             return await _context.Genres.ToListAsync();
         }
 
-        public async Task<Genre?> GetGenre(int id)
+        public async Task<Genre?> GetGenre(Guid id)
         {
             return await _context.Genres.FindAsync(id);
         }
 
-        public async Task PutGenre(int id, Genre genre)
+        public async Task PutGenre(Guid id, Genre genre)
         {
             var exits = await GenreExistsAsync(id);
 
@@ -70,7 +70,7 @@ namespace Api_Disney.Services
             return genre;
         }
 
-        public async Task DeleteGenre(int id)
+        public async Task DeleteGenre(Guid id)
         {
             var genre = await GetGenre(id);
             if (genre is null)
@@ -82,7 +82,7 @@ namespace Api_Disney.Services
 
             await _context.SaveChangesAsync();
         }
-        private async Task<bool> GenreExistsAsync(int id)
+        private async Task<bool> GenreExistsAsync(Guid id)
         {
             return await  _context.Genres.AnyAsync(e => e.Id == id);
         }

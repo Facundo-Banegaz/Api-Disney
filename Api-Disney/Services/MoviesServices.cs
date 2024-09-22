@@ -20,7 +20,7 @@ namespace Api_Disney.Services
         {
             return await _context.MovieOrSeries.Include(g => g.Genero).ToListAsync();
         }
-        public async Task<Movie?> GetMovie(int id)
+        public async Task<Movie?> GetMovie(Guid id)
         {
             return await _context.MovieOrSeries
         .Include(m => m.Characters)      // Incluir los personajes relacionados con la película
@@ -29,7 +29,7 @@ namespace Api_Disney.Services
 
 
         }
-        public async Task PutMovie(int id, Movie movie)
+        public async Task PutMovie(Guid id, Movie movie)
         {
             var exits =await MovieExistsAsync(id);
 
@@ -68,7 +68,7 @@ namespace Api_Disney.Services
         }
 
 
-        public async Task DeleteMovie(int id)
+        public async Task DeleteMovie(Guid id)
         {
             var movie = await GetMovie(id);
             if (movie is  null)
@@ -80,7 +80,7 @@ namespace Api_Disney.Services
             await _context.SaveChangesAsync();
         }
 
-        private async Task<bool> MovieExistsAsync(int id)
+        private async Task<bool> MovieExistsAsync(Guid id)
         {
             return await _context.MovieOrSeries.AnyAsync(e => e.Id == id);
         }

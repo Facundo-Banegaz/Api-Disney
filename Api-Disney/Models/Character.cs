@@ -8,7 +8,7 @@ namespace Api_Disney.Models
     public class Character
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Display(Name = "Nombre:")]
         [Required(ErrorMessage = "Por favor, ingresar el Nombre del Personaje:")]

@@ -26,7 +26,7 @@ namespace Api_Disney.DTOs
         [Display(Name = "Nombre Del Género:")]
         [Required(ErrorMessage = "Por favor, ingresar el Género:")]
 
-        public int GeneroId { get; set; }
+        public Guid GeneroId { get; set; }
 
         [Display(Name = "Califiacíon:")]
         [Required(ErrorMessage = "Por favor, ingresar la Califiacíon de la Película:")]
