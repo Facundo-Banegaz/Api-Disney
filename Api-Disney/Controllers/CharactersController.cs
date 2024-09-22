@@ -17,6 +17,7 @@ namespace Api_Disney.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CharactersController : ControllerBase
     {
         private readonly ICharactersServices _services;
@@ -28,14 +29,15 @@ namespace Api_Disney.Controllers
 
         // GET: api/Characters
         [HttpGet]
+        [Authorize(Roles = "Usuario, Administrator")]
         public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
         {
             return await _services.GetCharacters();
         }
 
         [HttpGet("filter")]
+        [Authorize(Roles = "Usuario, Administrator")]
 
-        //[Authorize] // Necesita token para acceder
         public async Task<ActionResult<IEnumerable<Character>>> FilterCharacters( 
             [FromQuery] string? name=null,
             [FromQuery] DateTime? age= null,
@@ -52,6 +54,7 @@ namespace Api_Disney.Controllers
 
         // GET: api/Characters/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Usuario, Administrator")]
         public async Task<ActionResult<Character>> GetCharacter(Guid id)
         {
             var character = await _services.GetCharacter(id);
@@ -67,6 +70,7 @@ namespace Api_Disney.Controllers
         // PUT: api/Characters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> PutCharacter(Guid id, CharacterDTO character)
         {
             try
@@ -87,6 +91,7 @@ namespace Api_Disney.Controllers
         // POST: api/Characters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<Character>> PostCharacter(CharacterDTO character)
         {
             var createCharacter = await _services.PostCharacter(character.ToCharacter());
@@ -98,6 +103,7 @@ namespace Api_Disney.Controllers
 
         // DELETE: api/Characters/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteCharacter(Guid id)
         {
             try

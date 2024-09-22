@@ -56,7 +56,7 @@ namespace Api_Disney.Controllers
             // Genera un token para el usuario autenticado
             var token = _services.GenerateToken(user);
 
-            return Ok(new { token });
+            return Ok(token);
         }
 
     }

@@ -52,21 +52,29 @@ namespace Api_Disney.Services
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             // Crear los claims
+            //var claims = new[]
+            //{
+            //new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+            //new Claim(ClaimTypes.Name, user.Nombre),
+            //new Claim(ClaimTypes.Email, user.Email),
+            //new Claim(ClaimTypes.Surname, user.Apellido),
+            //new Claim(ClaimTypes.Role, user.Rol),
+            //};
             var claims = new[]
-            {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Name, user.Nombre),
-            new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Surname, user.Apellido),
-            new Claim(ClaimTypes.Role, user.Rol),
-        };
+  {
+        new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),  // "sub"
+        new Claim(JwtRegisteredClaimNames.Name, user.Nombre),        // "name"
+        new Claim(JwtRegisteredClaimNames.Email, user.Email),        // "email"
+        new Claim("surname", user.Apellido),                         // Surname personalizado
+        new Claim("role", user.Rol)                                  // Rol personalizado
+    };
 
             // Crear el token
             var token = new JwtSecurityToken(
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(60),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

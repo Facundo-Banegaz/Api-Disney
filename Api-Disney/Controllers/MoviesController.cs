@@ -12,11 +12,13 @@ using Api_Disney.Exceptions;
 using Humanizer.Localisation;
 using Api_Disney.DTOs;
 using Api_Disney.Mappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api_Disney.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MoviesController : ControllerBase
     {
         private readonly IMoviesServices _services;
@@ -28,6 +30,7 @@ namespace Api_Disney.Controllers
 
         // GET: api/Movies
         [HttpGet]
+        [Authorize(Roles = "Usuario, Administrator")]
         public async Task<ActionResult<IEnumerable<Movie>>> GetMovieOrSeries()
         {
             return await _services.GetMovieOrSeries();
@@ -35,6 +38,7 @@ namespace Api_Disney.Controllers
 
         // GET: api/Movies/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "Usuario, Administrator")]
         public async Task<ActionResult<Movie>> GetMovie(Guid id)
         {
             var movie = await _services.GetMovie(id);
@@ -50,6 +54,7 @@ namespace Api_Disney.Controllers
         // PUT: api/Movies/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> PutMovie(Guid id, MovieDTO movie)
         {
             try
@@ -70,6 +75,7 @@ namespace Api_Disney.Controllers
         // POST: api/Movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<Movie>> PostMovie(MovieDTO movie)
         {
             var createMovie = await _services.PostMovie(movie.ToMovie());
@@ -79,6 +85,7 @@ namespace Api_Disney.Controllers
 
         // DELETE: api/Movies/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteMovie(Guid id)
         {
             try
@@ -96,7 +103,7 @@ namespace Api_Disney.Controllers
 
 
         [HttpGet("filter")]
-        //[Authorize] // Necesita token para acceder
+        [Authorize(Roles = "Usuario, Administrator")]
         public async Task<ActionResult<IEnumerable<Movie>>> FilterMovies(
             [FromQuery] string? name = null,
             [FromQuery] string? genre = null, 
