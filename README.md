@@ -86,4 +86,4 @@ Esta es una **Web API** construida en **C#** que gestiona información sobre per
 1. Clona este repositorio en tu máquina local.
 
    ```bash
-   git clone https://github.com/tu_usuario/tu_proyecto_api.git
+   git clone https://github.com/Facundo-Banegaz/Api-Disney.git
