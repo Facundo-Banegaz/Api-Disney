@@ -30,11 +30,9 @@ namespace Api_Disney.Controllers
                 // Registra el nuevo usuario utilizando el servicio
                 var user = await _services.RegisterUser(register);
 
-                // Envía un correo de verificación (implementa la lógica de envío de correo aquí)
-                // await _emailService.SendVerificationEmail(user.Email);
-
-                // Devuelve una respuesta de éxito sin un token
-                return Ok(new { message = "Usuario registrado. Por favor verifica tu correo electrónico." });
+          
+              
+                return Ok(new { message = "Usuario registrado éxitosamente." });
             }
             catch (Exception ex)
             {
@@ -53,7 +51,7 @@ namespace Api_Disney.Controllers
                 return Unauthorized("Credenciales incorrectas.");
             }
 
-            // Genera un token para el usuario autenticado
+            // Genera un token
             var token = _services.GenerateToken(user);
 
             return Ok(token);

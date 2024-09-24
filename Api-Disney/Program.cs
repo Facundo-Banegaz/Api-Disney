@@ -8,7 +8,15 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("PermitirTodo", policy =>
+    {
+        policy.AllowAnyOrigin()    // Permitir cualquier origen
+              .AllowAnyMethod()    // Permitir cualquier método (GET, POST, etc.)
+              .AllowAnyHeader();   // Permitir cualquier encabezado
+    });
+});
 // Add services to the container.
 
 var strConection = builder.Configuration.GetConnectionString("CadenaSql").ToString();
@@ -95,6 +103,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseCors("PermitirTodo"); 
 
 
 app.UseAuthentication();

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\Api-Disney.csproj": {}
+    "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\Api-Disney.csproj": {}
   },
   "projects": {
-    "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\Api-Disney.csproj": {
+    "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\Api-Disney.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\Api-Disney.csproj",
+        "projectUniqueName": "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\Api-Disney.csproj",
         "projectName": "Api-Disney",
-        "projectPath": "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\Api-Disney.csproj",
+        "projectPath": "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\Api-Disney.csproj",
         "packagesPath": "C:\\Users\\baneg\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\obj\\",
+        "outputPath": "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\baneg\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Cors": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.8, )"

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5GieCKF2Ce5fbshJKTCpAfdgcVNXHXohJHHhX80nq/0=",
+  "Hash": "/R/Bi39H+nmpcWtbCS9U0GheqEmA7J6E3yzqwEClvmI=",
   "Source": "Api-Disney",
   "BasePath": "_content/Api-Disney",
   "Mode": "Default",
@@ -47,10 +47,10 @@
       "OriginalItemSpec": "C:\\Users\\baneg\\.nuget\\packages\\microsoft.aspnetcore.components.quickgrid\\8.0.8\\staticwebassets\\QuickGrid.razor.js"
     },
     {
-      "Identity": "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Api-Disney.styles.css",
+      "Identity": "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Api-Disney.styles.css",
       "SourceId": "Api-Disney",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Api-Disney",
       "RelativePath": "Api-Disney.styles.css",
       "AssetKind": "All",
@@ -63,7 +63,7 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\baneg\\source\\repos\\Api-Disney\\Api-Disney\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Api-Disney.styles.css"
+      "OriginalItemSpec": "C:\\Users\\baneg\\OneDrive\\Escritorio\\pepe\\Api-Disney\\Api-Disney\\obj\\Debug\\net8.0\\scopedcss\\bundle\\Api-Disney.styles.css"
     }
   ]
 }

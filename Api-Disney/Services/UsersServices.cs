@@ -96,7 +96,7 @@ namespace Api_Disney.Services
 
             var user = new User
             {
-                Id = Guid.NewGuid(),
+       
                 Nombre = registerDto.Nombre,
                 Apellido = registerDto.Apellido,
                 Email = registerDto.Email,
